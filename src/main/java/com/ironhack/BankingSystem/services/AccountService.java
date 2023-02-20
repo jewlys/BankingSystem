@@ -2,67 +2,76 @@ package com.ironhack.BankingSystem.services;
 
 import com.ironhack.BankingSystem.models.DTOs.AccountDTO;
 import com.ironhack.BankingSystem.models.acc.Account;
-import com.ironhack.BankingSystem.models.acc.Checking;
-import com.ironhack.BankingSystem.models.acc.Savings;
+
+
 import com.ironhack.BankingSystem.repositories.accountRepos.AccountRepository;
 import com.ironhack.BankingSystem.repositories.accountRepos.CheckingRepository;
-import com.ironhack.BankingSystem.repositories.accountRepos.SavingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.security.auth.login.AccountNotFoundException;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+import com.ironhack.BankingSystem.models.DTOs.AccountDTO;
+import com.ironhack.BankingSystem.models.acc.Account;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AccountService implements AccountServiceInterface {
-    @Autowired
-    private AccountRepository accountRepository;
+public class AccountService {
 
     @Autowired
-    private CheckingService checkingService;
-    @Autowired
-    private SavingsService savingsService;
-    @Autowired
-    private CreditCardService creditCardService;
+    AccountRepository accountRepository;
 
-    @Override
-    public boolean transferMoney(Integer senderAccountId, String receiverName, Integer receiverAccountId, BigDecimal amount) {
-        Optional<Account> receiverAccount = accountRepository.findByAccountIdAndPrimaryOwnerName(receiverAccountId, receiverName);
-        Optional<Account> senderAccount = accountRepository.findByAccountId(senderAccountId);
-        if(receiverAccount.isPresent() && senderAccount.isPresent()) {
-            senderAccount.get().transferMoney(receiverAccount.get(), amount);
-            accountRepository.save(senderAccount.get());
-            accountRepository.save(receiverAccount.get());
+    public Account createAccount(AccountDTO accountDTO) {
+        Account account = new Account(accountDTO.getBalance());
+        accountRepository.save(account);
+        return account;
+    }
+
+    public List<Account> getAllAccounts() {
+        return accountRepository.findAll();
+    }
+
+    public Account getAccountById(Long id) {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isPresent()) {
+            return optionalAccount.get();
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
         }
-
-        return receiverAccount.isPresent() && senderAccount.isPresent();
     }
 
-    @Override
-    public List<Account> getAllAccountsById(Integer userId) {
-        return accountRepository.findAllByPrimaryOwnerUserId(userId);
+    public Account updateAccount(Long id, AccountDTO accountDTO) {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isPresent()) {
+            Account account = optionalAccount.get();
+            account.setBalance(accountDTO.getBalance());
+            accountRepository.save(account);
+            return account;
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
+        }
     }
 
-    public void createAccount(String accountType, String id, AccountDTO accountDTO) {
-
-        switch (accountType) {
-            case "checking" -> {
-                checkingService.createCheckingAccount(accountDTO, id);
-                break;
-            }
-            case "savings" -> {
-                savingsService.createSavingsAccount(accountDTO, id);
-                break;
-            }
-            case "credit" -> {
-                creditCardService.createCreditCardAccount(accountDTO, id);
-                break;
-            }
-            default -> {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The account type is not valid, please re-try.");
-            }
-
+    public void deleteAccount(Long id) {
+        Optional<Account> optionalAccount = accountRepository.findById(id);
+        if (optionalAccount.isPresent()) {
+            accountRepository.delete(optionalAccount.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Account not found");
         }
     }
 }

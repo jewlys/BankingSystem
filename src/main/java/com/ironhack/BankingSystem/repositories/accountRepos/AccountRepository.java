@@ -14,4 +14,12 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     List<Account> findAllBySecondaryOwner(AccountHolder secondaryOwner);
     Optional<Account> findBySecretKey(String secretKey);
     List<Account> findAllByBalanceLessThan(BigDecimal balance);
+
+    boolean existsBySecretKey(String secretKey);
+
+    Optional<Account> findByAccountIdAndPrimaryOwnerName(Integer receiverAccountId, String receiverName);
+
+    Optional<Account> findByAccountId(Integer senderAccountId);
+
+    List<Account> findAllByPrimaryOwner_Id(Integer userId);
 }

@@ -6,6 +6,7 @@ import com.ironhack.BankingSystem.models.acc.Account;
 import jakarta.persistence.Entity;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 public class StudentChecking extends Account {
@@ -19,6 +20,9 @@ public class StudentChecking extends Account {
         super(balance, primaryOwner, secondaryOwner);
         this.monthlyMaintenanceFee = BigDecimal.ZERO;
         this.dailyTransactionLimit = new BigDecimal("500.00");
+    }
+
+    public StudentChecking(BigDecimal balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate, String secretKey) {
     }
 
     // Getters and setters for the fields specific to StudentChecking accounts

@@ -5,6 +5,7 @@ import com.ironhack.BankingSystem.models.Users.AccountHolder;
 import jakarta.persistence.*;
 import jakarta.transaction.Status;
 
+
 import java.math.BigDecimal;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Account {
+public class Account {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,13 +54,16 @@ public abstract class Account {
                 this.primaryOwner = primaryOwner;
                 this.secondaryOwner = secondaryOwner;
                 this.creationDate = new Date();
-                this.status = STATUS_ACTIVE;
+
         }
 
         public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Date creationDate, Status status) {
         }
 
         public Account(Money balance, AccountHolder primaryOwner) {
+        }
+
+        public Account(BigDecimal balance) {
         }
 
         public Long getId() {
@@ -137,6 +141,13 @@ public abstract class Account {
         public void addInterest(BigDecimal interestRate) {
                 BigDecimal interest = this.balance.multiply(interestRate);
                 this.balance = this.balance.add(interest);
+        }
+
+        public Object getSecretKey() {
+                return null;
+        }
+
+        public void transferMoney(Account account, BigDecimal amount) {
         }
 }
 
