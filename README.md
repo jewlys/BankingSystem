@@ -2,7 +2,7 @@
 This is a simple RESTful API for managing bank accounts. It was built using Java and Spring Boot, and it uses a MySQL database for data storage.
 
 ## Features
--Register an account holder
+- Register an account holder
 - Create a new account
 - Deposit money into an account
 - Withdraw money from an account
