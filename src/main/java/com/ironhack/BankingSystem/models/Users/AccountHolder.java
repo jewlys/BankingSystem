@@ -1,10 +1,10 @@
-package com.ironhack.BankingSystem.models;
+package com.ironhack.BankingSystem.models.Users;
 
+import com.ironhack.BankingSystem.models.acc.Account;
+import com.ironhack.BankingSystem.models.Address;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
-import java.time.LocalDate;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

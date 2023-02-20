@@ -1,6 +1,8 @@
-package com.ironhack.BankingSystem.models;
+package com.ironhack.BankingSystem.models.acc;
 
-import com.ironhack.BankingSystem.models.Account;
+import com.ironhack.BankingSystem.models.Money;
+import com.ironhack.BankingSystem.models.Users.AccountHolder;
+import com.ironhack.BankingSystem.models.acc.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
