@@ -1,4 +1,4 @@
-package com.ironhack.BankingSystem.repositories.accountrRepos;
+package com.ironhack.BankingSystem.repositories.accountRepos;
 
 import com.ironhack.BankingSystem.models.Users.AccountHolder;
 import com.ironhack.BankingSystem.models.acc.Account;

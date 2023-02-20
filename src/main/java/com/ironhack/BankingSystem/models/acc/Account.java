@@ -9,9 +9,7 @@ import java.math.BigDecimal;
 
 import java.util.Date;
 
-
-
-
+import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 
 @Entity
@@ -55,7 +53,7 @@ public abstract class Account {
                 this.primaryOwner = primaryOwner;
                 this.secondaryOwner = secondaryOwner;
                 this.creationDate = new Date();
-                this.status = Status.ACTIVE;
+                this.status = STATUS_ACTIVE;
         }
 
         public Account(Money balance, AccountHolder primaryOwner, AccountHolder secondaryOwner, Date creationDate, Status status) {

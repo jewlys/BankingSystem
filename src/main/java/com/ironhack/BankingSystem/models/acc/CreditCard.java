@@ -4,11 +4,12 @@ import com.ironhack.BankingSystem.models.Money;
 import com.ironhack.BankingSystem.models.Users.AccountHolder;
 import com.ironhack.BankingSystem.models.acc.Account;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 
 import java.math.BigDecimal;
 
-@Entity
 @PrimaryKeyJoinColumn(name = "accountId")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
