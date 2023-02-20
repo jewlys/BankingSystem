@@ -2,27 +2,28 @@
 This is a simple RESTful API for managing bank accounts. It was built using Java and Spring Boot, and it uses a MySQL database for data storage.
 
 ## Features
-Register an account holder
-Create a new account
-Deposit money into an account
-Withdraw money from an account
-Transfer money between accounts
+-Register an account holder
+- Create a new account
+- Deposit money into an account
+- Withdraw money from an account
+- Transfer money between accounts
 
 ## Technologies
 
 This project uses the following technologies:
 
-Java
-Spring Boot
-MySQL
-JUnit 5 for testing
-Swagger for API documentation
+- Java
+- Spring Boot
+- MySQL
+- JUnit 5 for testing
+
 ## Installation
 To run the project, you will need:
 
-Java 11 or higher
-Maven
-MySQL
+- Java 11 or higher
+- Maven
+- MySQL
+
 Once you have these installed, you can clone the repository and run the following commands:
 
 Copy code
