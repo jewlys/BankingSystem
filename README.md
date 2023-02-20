@@ -26,9 +26,10 @@ To run the project, you will need:
 
 Once you have these installed, you can clone the repository and run the following commands:
 
-Copy code
-mvn clean install
+
+``` mvn clean install
 mvn spring-boot:run
+```
 
 
 
@@ -36,10 +37,11 @@ mvn spring-boot:run
 ## Testing
 To run the tests, you can use the following command:
 
-bash
-Copy code
+ ```
 mvn test
+```
+
 The tests cover more than 80% of the application's functionality. They include unit tests for the controllers, services, and repositories, as well as integration tests that test the API endpoints.
 
-License
+## License
 This project is licensed under the Ironhack License.
