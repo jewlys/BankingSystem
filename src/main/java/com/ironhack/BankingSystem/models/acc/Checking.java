@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Date;
 
 @Entity
@@ -32,7 +32,7 @@ public class Checking extends Account {
         this.monthlyMaintenanceFee = monthlyMaintenanceFee;
     }
 
-    public Checking(BigDecimal balance, String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, LocalDate creationDate) {
+    public Checking(BigDecimal balance, String secretKey, AccountHolder primaryOwner, AccountHolder secondaryOwner, ChronoLocalDate creationDate) {
     }
 
     public String getSecretKey() {

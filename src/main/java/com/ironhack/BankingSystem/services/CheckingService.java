@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.chrono.ChronoLocalDate;
 
 @Service
 public class CheckingService implements CheckingServiceInterface {
@@ -37,7 +38,7 @@ public class CheckingService implements CheckingServiceInterface {
             AccountHolder primaryOwner = accountHolderRepository.findById(Integer.valueOf(id)).get();
             AccountHolder secondaryOwner = accountDTO.getSecondaryOwner();
             BigDecimal minimumBalance = accountDTO.getMinimumBalance();
-            LocalDate creationDate;
+            ChronoLocalDate creationDate;
             if (accountDTO.getCreationDate() != null) {
                 creationDate = accountDTO.getCreationDate();
             } else {

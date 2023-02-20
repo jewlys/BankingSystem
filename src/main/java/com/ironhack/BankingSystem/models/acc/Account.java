@@ -8,9 +8,12 @@ import jakarta.transaction.Status;
 
 import java.math.BigDecimal;
 
+import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.ChronoPeriod;
+import java.time.chrono.Chronology;
+import java.time.temporal.TemporalField;
+import java.time.temporal.TemporalUnit;
 import java.util.Date;
-
-import static jakarta.transaction.Status.STATUS_ACTIVE;
 
 
 @Entity
@@ -37,7 +40,7 @@ public class Account {
 
         @Column(nullable = false)
         @Temporal(TemporalType.TIMESTAMP)
-        private Date creationDate;
+        private ChronoLocalDate creationDate;
 
         @Column(nullable = true)
         @Temporal(TemporalType.TIMESTAMP)
@@ -53,7 +56,47 @@ public class Account {
                 this.balance = balance.getAmount();
                 this.primaryOwner = primaryOwner;
                 this.secondaryOwner = secondaryOwner;
-                this.creationDate = new Date();
+                this.creationDate = new ChronoLocalDate() {
+                        @Override
+                        public long getLong(TemporalField field) {
+                                return 0;
+                        }
+
+                        @Override
+                        public Chronology getChronology() {
+                                return null;
+                        }
+
+                        @Override
+                        public int lengthOfMonth() {
+                                return 0;
+                        }
+
+                        @Override
+                        public long until(java.time.temporal.Temporal endExclusive, TemporalUnit unit) {
+                                return 0;
+                        }
+
+                        @Override
+                        public ChronoPeriod until(ChronoLocalDate endDateExclusive) {
+                                return null;
+                        }
+
+                        @Override
+                        public boolean equals(Object obj) {
+                                return false;
+                        }
+
+                        @Override
+                        public int hashCode() {
+                                return 0;
+                        }
+
+                        @Override
+                        public String toString() {
+                                return null;
+                        }
+                };
 
         }
 
@@ -102,11 +145,11 @@ public class Account {
                 this.penaltyFee = penaltyFee;
         }
 
-        public Date getCreationDate() {
+        public ChronoLocalDate getCreationDate() {
                 return creationDate;
         }
 
-        public void setCreationDate(Date creationDate) {
+        public void setCreationDate(ChronoLocalDate creationDate) {
                 this.creationDate = creationDate;
         }
 

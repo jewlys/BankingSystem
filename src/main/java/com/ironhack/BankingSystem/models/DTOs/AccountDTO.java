@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
 public class AccountDTO {
 
@@ -53,7 +54,7 @@ public class AccountDTO {
         return minimumBalance;
     }
 
-    public LocalDate getCreationDate() {
+    public ChronoLocalDate getCreationDate() {
         return creationDate;
     }
 

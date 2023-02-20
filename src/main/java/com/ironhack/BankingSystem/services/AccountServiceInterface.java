@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface AccountServiceInterface {
 
-    boolean transferMoney(Integer senderAccount, String receiverName, Integer receiverAccountId, BigDecimal amount) throws AccountService.MoneyTransferException;
+    boolean transferMoney(Integer senderAccount, String receiverName, Integer receiverAccountId, BigDecimal amount) throws MoneyTransferException;
 
     List<Account> getAllAccountsById(Integer userId);
+
+    class MoneyTransferException extends Exception {
+    }
 }
